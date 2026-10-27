@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -326,4 +326,563 @@
                             <i class="fa-solid fa-code"></i>
                         </div>
                         <h3 class="text-xl font-bold">Modern Web Architecture</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Single Page Applications (SPAs) optimized for lightning-fast mobile loa
+                        <p class="text-gray-400 text-sm leading-relaxed">Single Page Applications (SPAs) optimized for lightning-fast mobile loads and GitHub Pages hosting.</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl space-y-4 sm:col-span-2 lg:col-span-1">
+                        <div class="w-14 h-14 rounded-2xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 text-2xl font-bold">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Android & Input Utilities</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Custom touchscreen mapping, ADB tweaks, and low-latency input binding tools for mobile systems.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== PROJECTS VIEW ==================== -->
+        <div id="page-projects" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-cyan-400 font-bold text-xs tracking-widest uppercase">Portfolio Showcase</span>
+                <h2 class="text-3xl sm:text-4xl font-black">Featured Projects & Works</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Explore our multi-disciplinary projects spanning digital agency work, applications, and system utilities.</p>
+            </div>
+
+            <!-- Multi-Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filterProjects('all')" class="project-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-cyan-500 text-black shadow-lg shadow-cyan-500/25" data-filter="all">All Works</button>
+                <button onclick="filterProjects('web')" class="project-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all glass-card text-gray-400 hover:text-white" data-filter="web">Web Apps</button>
+                <button onclick="filterProjects('marketing')" class="project-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all glass-card text-gray-400 hover:text-white" data-filter="marketing">Paid Ads & CRO</button>
+                <button onclick="filterProjects('emulator')" class="project-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all glass-card text-gray-400 hover:text-white" data-filter="emulator">Android Utilities</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between project-card" data-category="web">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-mono font-bold uppercase border border-cyan-500/30">Single Page App</span>
+                            <i class="fa-solid fa-laptop-code text-cyan-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Nexoo Agency SPA</h3>
+                        <p class="text-gray-400 text-sm">Responsive dark mode agency portfolio with particle touch physics, custom cursors, and Web Audio synthesis.</p>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between border-t border-gray-800/80 mt-4">
+                        <span class="text-xs text-gray-500 font-mono">HTML5 / Tailwind JS</span>
+                        <button onclick="openModal('Nexoo Agency SPA', 'A complete modern web portfolio and agency application engineered specifically for GitHub Pages free hosting. Features smooth touch gesture support, custom ambient lighting effects, and modular SPA views.')" class="text-cyan-400 text-xs font-bold hover:underline flex items-center gap-1">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between project-card" data-category="marketing">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-[10px] font-mono font-bold uppercase border border-purple-500/30">Digital Advertising</span>
+                            <i class="fa-solid fa-chart-line text-purple-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Performance ROAS Campaign</h3>
+                        <p class="text-gray-400 text-sm">Full-funnel Meta & Google paid advertising setup with GA4 tracking, conversion CAPI, and high-converting landing pages.</p>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between border-t border-gray-800/80 mt-4">
+                        <span class="text-xs text-gray-500 font-mono">Meta Ads / GA4</span>
+                        <button onclick="openModal('Performance ROAS Campaign', 'Data-driven acquisition strategy that generated over 4.5x ROAS for client acquisition channels using real-time event analytics and retargeting automation.')" class="text-cyan-400 text-xs font-bold hover:underline flex items-center gap-1">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between project-card" data-category="emulator">
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-[10px] font-mono font-bold uppercase border border-pink-500/30">System Tool</span>
+                            <i class="fa-solid fa-gamepad text-pink-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Android Keymapper & ADB Suite</h3>
+                        <p class="text-gray-400 text-sm">Low-latency keymapping suite and system optimizer designed for Android devices, emulators, and touchscreens.</p>
+                    </div>
+                    <div class="p-6 pt-0 flex items-center justify-between border-t border-gray-800/80 mt-4">
+                        <span class="text-xs text-gray-500 font-mono">C++ / Android ADB</span>
+                        <button onclick="openModal('Android Keymapper & ADB Suite', 'A custom input keymapper with touch gesture overlay mapping, high-speed input translation for touchscreen gaming, and automated shell scripts for Android optimization.')" class="text-cyan-400 text-xs font-bold hover:underline flex items-center gap-1">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== SKILLS VIEW ==================== -->
+        <div id="page-skills" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-cyan-400 font-bold text-xs tracking-widest uppercase">Capabilities & Stack</span>
+                <h2 class="text-3xl sm:text-4xl font-black">Technical & Creative Skills</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Comprehensive technical stack across front-end engineering, paid media, and touch hardware systems.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill Group 1 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Web Engineering</h3>
+                    <ul class="space-y-2.5 text-xs text-gray-400 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Single File SPAs</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> HTML5 / CSS3 / Tailwind</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> JavaScript (ES6+ Modules)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Touch Event Handling</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> GitHub Pages Deployment</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Group 2 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-rectangle-ad"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Paid Advertising</h3>
+                    <ul class="space-y-2.5 text-xs text-gray-400 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Meta Ads (Facebook/IG)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Google Search & Display</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> GA4 & Conversion API</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Funnel Optimization</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Audience Retargeting</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Group 3 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-pink-500/10 border border-pink-500/30 text-pink-400 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Android & Input</h3>
+                    <ul class="space-y-2.5 text-xs text-gray-400 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> Keymapping Logic</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> Touchscreen Event Parsing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> ADB Optimization Scripts</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> ARM / x86 Compatibility</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pink-400"></i> Mobile Latency Reduction</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Group 4 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Content & FX</h3>
+                    <ul class="space-y-2.5 text-xs text-gray-400 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Video Editing & Motion</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Canvas & WebGL Particles</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Web Audio API Sound Synth</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Short-Form Viral Editing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> UI/UX Micro-Interactions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== STUDIO VIEW (Interactive Widgets) ==================== -->
+        <div id="page-studio" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-cyan-400 font-bold text-xs tracking-widest uppercase">Interactive Studio</span>
+                <h2 class="text-3xl sm:text-4xl font-black">Keymapper & Code Sandbox</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Experience live interactive touch keymapping and instant single-file HTML execution.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Keymapper Simulator Widget -->
+                <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold flex items-center gap-2 text-white">
+                            <i class="fa-solid fa-gamepad text-cyan-400"></i> Touch Keymapper Simulator
+                        </h3>
+                        <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full uppercase">Touch / Keyboard</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Tap buttons or press physical keyboard keys to trigger touch binding feedback and synthesized audio feedback.</p>
+                    
+                    <div class="bg-dark-950/90 rounded-2xl p-6 border border-gray-800 text-center space-y-6 relative overflow-hidden">
+                        <div id="key-output" class="text-2xl sm:text-3xl font-black text-cyan-400 font-mono py-4 tracking-wider min-h-[72px] flex items-center justify-center bg-dark-900/60 rounded-xl border border-gray-800">
+                            READY FOR INPUT
+                        </div>
+                        
+                        <!-- Touch & Virtual Controls Grid -->
+                        <div class="grid grid-cols-3 gap-3 max-w-xs mx-auto">
+                            <div></div>
+                            <button onclick="simulateKey('W')" class="p-4 rounded-xl glass-card font-mono font-bold text-lg text-white hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">W</button>
+                            <div></div>
+                            <button onclick="simulateKey('A')" class="p-4 rounded-xl glass-card font-mono font-bold text-lg text-white hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">A</button>
+                            <button onclick="simulateKey('S')" class="p-4 rounded-xl glass-card font-mono font-bold text-lg text-white hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">S</button>
+                            <button onclick="simulateKey('D')" class="p-4 rounded-xl glass-card font-mono font-bold text-lg text-white hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">D</button>
+                        </div>
+                        <div class="flex justify-center gap-3">
+                            <button onclick="simulateKey('SPACE')" class="px-8 py-3 rounded-xl glass-card font-mono font-bold text-xs text-gray-300 hover:bg-purple-500 hover:text-white active:scale-95 transition-all">[ SPACE ]</button>
+                            <button onclick="simulateKey('SHIFT')" class="px-6 py-3 rounded-xl glass-card font-mono font-bold text-xs text-gray-300 hover:bg-pink-500 hover:text-white active:scale-95 transition-all">[ SHIFT ]</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live HTML Sandbox Widget -->
+                <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold flex items-center gap-2 text-white">
+                            <i class="fa-solid fa-code text-purple-400"></i> Live Sandbox Editor
+                        </h3>
+                        <button onclick="runCode()" class="px-4 py-1.5 rounded-full bg-purple-500 text-white text-xs font-bold uppercase tracking-wider hover:bg-purple-600 active:scale-95 transition-all shadow-lg shadow-purple-500/25">Run Code</button>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Modify the HTML/CSS code below and click Run to render the live output instantly inside the preview panel.</p>
+                    
+                    <div class="space-y-4">
+                        <textarea id="code-input" rows="5" class="w-full bg-dark-950 border border-gray-800 rounded-xl p-4 font-mono text-xs text-cyan-300 focus:outline-none focus:border-cyan-500 transition-all shadow-inner" spellcheck="false">&lt;div style="text-align:center; padding: 1rem;"&gt;
+  &lt;h3 style="color: #06b6d4; font-weight: bold; font-size: 1.25rem;"&gt;Nexoo Dynamic Execution&lt;/h3&gt;
+  &lt;p style="color: #9ca3af; font-size: 0.875rem;"&gt;Single-file HTML running smoothly in browser!&lt;/p&gt;
+&lt;/div&gt;</textarea>
+                        
+                        <div class="text-xs font-mono text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fa-solid fa-play text-purple-400 text-[10px]"></i> Live Output Preview:
+                        </div>
+                        <div id="code-preview" class="bg-dark-950/90 rounded-xl p-4 border border-gray-800 min-h-[100px] flex items-center justify-center">
+                            <div style="text-align:center; padding: 1rem;">
+                              <h3 style="color: #06b6d4; font-weight: bold; font-size: 1.25rem;">Nexoo Dynamic Execution</h3>
+                              <p style="color: #9ca3af; font-size: 0.875rem;">Single-file HTML running smoothly in browser!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== CONTACT VIEW ==================== -->
+        <div id="page-contact" class="page-view max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-cyan-400 font-bold text-xs tracking-widest uppercase">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-black">Let's Build Something Great</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Have a project, custom Android tool request, or campaign inquiry? Reach out directly.</p>
+            </div>
+
+            <div class="glass-card p-6 sm:p-12 rounded-3xl shadow-2xl">
+                <form onsubmit="handleContact(event)" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono uppercase tracking-wider text-gray-400">Your Name</label>
+                            <input type="text" required class="w-full bg-dark-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500 transition-all" placeholder="Alex Morgan">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono uppercase tracking-wider text-gray-400">Your Email</label>
+                            <input type="email" required class="w-full bg-dark-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500 transition-all" placeholder="alex@domain.com">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-mono uppercase tracking-wider text-gray-400">Message</label>
+                        <textarea rows="5" required class="w-full bg-dark-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500 transition-all" placeholder="Describe your web application project, keymapping requirements, or marketing goals..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 hover:scale-[1.01] active:scale-95 transition-all">
+                        Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="relative z-10 border-t border-gray-800/80 bg-dark-950/90 py-10 text-center text-gray-500 text-xs mt-16">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <p>&copy; 2026 Nexoo Agency & Developer Portfolio. Optimized for GitHub Pages Hosting.</p>
+            <div class="flex justify-center gap-6 text-base">
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-card max-w-lg w-full p-6 sm:p-8 rounded-3xl space-y-6 relative border border-cyan-500/40 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="modal-title" class="text-2xl font-black text-cyan-400 pr-8"></h3>
+            <p id="modal-desc" class="text-gray-300 text-sm leading-relaxed"></p>
+            <div class="pt-4 border-t border-gray-800 flex justify-end">
+                <button onclick="closeModal()" class="px-6 py-2.5 rounded-full bg-cyan-500 text-black font-bold text-xs uppercase tracking-wider hover:bg-cyan-400 transition-all">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Overlay -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-card bg-cyan-500/10 border-cyan-500/50 text-cyan-300 px-6 py-3.5 rounded-2xl shadow-2xl transform translate-y-32 transition-transform duration-300 font-semibold text-xs flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-cyan-400 text-base"></i>
+        <span id="toast-msg">Action completed!</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Web Audio API Sound Synthesizer (No external audio files required)
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.08);
+                } else if (type === 'key') {
+                    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.12);
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.12);
+                }
+            } catch (e) { console.log('Audio error:', e); }
+        }
+
+        // Multi-Page SPA Navigation Logic
+        function switchPage(pageId) {
+            playSound('click');
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('text-cyan-400', 'bg-dark-800', 'border', 'border-cyan-500/30', 'shadow-md', 'shadow-cyan-500/10');
+                b.classList.add('text-gray-400');
+            });
+
+            const targetPage = document.getElementById('page-' + pageId);
+            const targetNav = document.getElementById('nav-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+            if (targetNav) {
+                targetNav.classList.remove('text-gray-400');
+                targetNav.classList.add('text-cyan-400', 'bg-dark-800', 'border', 'border-cyan-500/30', 'shadow-md', 'shadow-cyan-500/10');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            playSound('click');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        // Project Category Filter
+        function filterProjects(category) {
+            playSound('click');
+            document.querySelectorAll('.project-filter-btn').forEach(btn => {
+                if(btn.dataset.filter === category) {
+                    btn.className = "project-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-cyan-500 text-black shadow-lg shadow-cyan-500/25";
+                } else {
+                    btn.className = "project-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all glass-card text-gray-400 hover:text-white";
+                }
+            });
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Logic
+        function openModal(title, desc) {
+            playSound('click');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+        function closeModal() {
+            playSound('click');
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Toast Notification System
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-32');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32');
+            }, 3500);
+        }
+
+        // Contact Form Submission Handler
+        function handleContact(e) {
+            e.preventDefault();
+            playSound('click');
+            showToast('Message submitted! We will respond shortly.');
+            e.target.reset();
+        }
+
+        // Interactive Studio Controls
+        function runCode() {
+            playSound('click');
+            const code = document.getElementById('code-input').value;
+            document.getElementById('code-preview').innerHTML = code;
+            showToast('HTML executed in live preview!');
+        }
+        function simulateKey(key) {
+            playSound('key');
+            const out = document.getElementById('key-output');
+            out.innerText = `KEY PRESSED: [ ${key} ]`;
+            out.classList.add('text-pink-400');
+            setTimeout(() => { 
+                out.innerText = 'READY FOR INPUT'; 
+                out.classList.remove('text-pink-400');
+            }, 1200);
+        }
+
+        // Hardware Keyboard Event Listener for Keymapper
+        window.addEventListener('keydown', (e) => {
+            const studioPage = document.getElementById('page-studio');
+            if (studioPage && studioPage.classList.contains('active')) {
+                const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+                if (activeTag !== 'input' && activeTag !== 'textarea') {
+                    simulateKey(e.key.toUpperCase());
+                }
+            }
+        });
+
+        // Touch & Mouse Light Cursor Tracker (Mobile & Desktop Compatible)
+        const cursor = document.getElementById('custom-cursor');
+        const follower = document.getElementById('cursor-follower');
+        const glow = document.getElementById('ambient-glow');
+
+        let inputX = window.innerWidth / 2, inputY = window.innerHeight / 2;
+        let cursorX = inputX, cursorY = inputY;
+        let followerX = inputX, followerY = inputY;
+
+        function updateInputPosition(x, y) {
+            inputX = x;
+            inputY = y;
+            glow.style.left = inputX + 'px';
+            glow.style.top = inputY + 'px';
+        }
+
+        // Mouse Events
+        window.addEventListener('mousemove', (e) => {
+            updateInputPosition(e.clientX, e.clientY);
+        });
+
+        // Touch Events for Mobile / Android
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                updateInputPosition(e.touches[0].clientX, e.touches[0].clientY);
+                createRipple(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                updateInputPosition(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        // Touch Ripple Generator
+        function createRipple(x, y) {
+            const ripple = document.createElement('div');
+            ripple.className = 'touch-ripple';
+            ripple.style.width = '30px';
+            ripple.style.height = '30px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 650);
+        }
+
+        // Cursor Interpolation Animation Loop
+        function renderCursor() {
+            cursorX += (inputX - cursorX) * 0.25;
+            cursorY += (inputY - cursorY) * 0.25;
+            followerX += (inputX - followerX) * 0.12;
+            followerY += (inputY - followerY) * 0.12;
+
+            if (cursor) {
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+            }
+            if (follower) {
+                follower.style.left = followerX + 'px';
+                follower.style.top = followerY + 'px';
+            }
+
+            requestAnimationFrame(renderCursor);
+        }
+        renderCursor();
+
+        // Responsive Interactive Canvas Particle System
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particleCount = window.innerWidth < 640 ? 30 : 55;
+        const particles = Array.from({ length: particleCount }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.7,
+            vy: (Math.random() - 0.5) * 0.7,
+            radius: Math.random() * 2 + 1
+        }));
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(6, 182, 212, 0.3)';
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.07)';
+
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Particle Repulsion from Touch/Mouse Cursor
+                const dx = inputX - p.x;
+                const dy = inputY - p.y;
+                const distToInput = Math.hypot(dx, dy);
+                if (distToInput < 120) {
+                    const angle = Math.atan2(dy, dx);
+                    p.x -= Math.cos(angle) * 1.5;
+                    p.y -= Math.sin(angle) * 1.5;
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = index + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>
