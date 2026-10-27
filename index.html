@@ -38,39 +38,33 @@
         ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #374151; }
 
-        /* Custom Dynamic Cursor for Desktop & Touch Devices */
-        .custom-cursor {
-            pointer-events: none;
-            position: fixed;
-            top: 0; left: 0;
-            z-index: 9999;
-            border-radius: 50%;
-            transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        #custom-cursor {
-            width: 16px; height: 16px;
-            background: #06b6d4;
-            box-shadow: 0 0 15px #06b6d4, 0 0 30px #a855f7;
-            transform: translate(-50%, -50%);
-        }
-        #cursor-follower {
-            width: 42px; height: 42px;
-            border: 2px solid rgba(236, 72, 153, 0.6);
-            background: rgba(236, 72, 153, 0.05);
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
-        }
-
-        /* Mouse/Touch Spotlight Ambient Lighting */
+        /* Hardware Accelerated Touch Ambient Glow */
         #mouse-glow {
             pointer-events: none;
             position: fixed;
             top: 0; left: 0;
-            width: 550px; height: 550px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(168, 85, 247, 0.08) 40%, transparent 70%);
-            transform: translate(-50%, -50%);
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, rgba(168, 85, 247, 0.07) 40%, transparent 70%);
+            transform: translate3d(-50%, -50%, 0);
             z-index: 1;
-            transition: width 0.3s, height 0.3s;
+            will-change: transform;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Touch / Click Ripple Animation */
+        .touch-ripple {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, rgba(168, 85, 247, 0.3) 60%, transparent 100%);
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleAnim 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+            z-index: 9999;
+        }
+
+        @keyframes rippleAnim {
+            0% { width: 10px; height: 10px; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { width: 140px; height: 140px; opacity: 0; transform: translate(-50%, -50%) scale(2.2); }
         }
 
         /* Infinite Marquee Animation */
@@ -92,34 +86,32 @@
             background: rgba(17, 24, 39, 0.75);
             backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
         }
-        .glass-card:hover {
+        .glass-card:hover, .glass-card:active {
             border-color: rgba(6, 182, 212, 0.5);
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.25);
-            transform: translateY(-50px) scale(1.01);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+            transform: translateY(-3px);
         }
 
-        /* Fluid Page Transition Effects */
+        /* Multi-Page Tab Transitions */
         .page-view {
             display: none;
             opacity: 0;
-            transform: translateY(12px) scale(0.99);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            transform: translateY(10px);
+            transition: opacity 0.35s ease-out, transform 0.35s ease-out;
         }
         .page-view.active {
             display: block;
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
     </style>
 </head>
 <body class="bg-dark-900 text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-black">
 
-    <!-- Interactive Mouse/Touch Light & Dynamic Cursors -->
+    <!-- Ambient Touch Spotlight Glow (No circles) -->
     <div id="mouse-glow"></div>
-    <div id="custom-cursor" class="custom-cursor"></div>
-    <div id="cursor-follower" class="custom-cursor"></div>
 
     <!-- Background Particle Canvas -->
     <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
@@ -128,7 +120,7 @@
     <header class="sticky top-0 z-50 bg-dark-900/80 backdrop-blur-md border-b border-gray-800 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" onclick="switchPage('home'); playAudioTone(600); return false;" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-bolt text-white text-lg"></i>
                 </div>
                 <div>
@@ -173,7 +165,7 @@
         <!-- ==================== HOME PAGE ==================== -->
         <div id="page-home" class="page-view active">
             <!-- Hero Section -->
-            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:text-left grid lg:grid-cols-12 gap-12 items-center">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center lg:text-left grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-6">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold tracking-wide uppercase">
                         <i class="fa-solid fa-sparkles"></i> Strategic Digital Agency & Developer Portfolio
@@ -185,10 +177,10 @@
                         We combine high-performance web development, precision paid advertising, content creation, and custom mobile utilities to scale businesses exponentially.
                     </p>
                     <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                        <button onclick="switchPage('projects'); playAudioTone(500);" class="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/30 hover:scale-105 transition-all">
+                        <button onclick="switchPage('projects'); playAudioTone(500);" class="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all">
                             Explore Projects
                         </button>
-                        <button onclick="switchPage('studio'); playAudioTone(600);" class="px-8 py-4 rounded-full glass-card text-gray-200 font-bold hover:text-white transition-all">
+                        <button onclick="switchPage('studio'); playAudioTone(600);" class="px-8 py-4 rounded-full glass-card text-gray-200 font-bold hover:text-white active:scale-95 transition-all">
                             Interactive Studio
                         </button>
                     </div>
@@ -208,7 +200,7 @@
                                 NX
                             </div>
                             <h3 class="text-xl font-bold tracking-wide">Next-Gen Solutions</h3>
-                            <p class="text-xs text-gray-400">High-speed web systems, performance optimization, and immersive animations.</p>
+                            <p class="text-xs text-gray-400">High-speed web systems, performance optimization, and immersive touch animations.</p>
                         </div>
                         <div class="z-10 bg-dark-800/90 rounded-xl p-3 border border-gray-700/60 text-xs font-mono text-cyan-300 flex justify-between items-center">
                             <span>Status: Operational</span>
@@ -239,15 +231,15 @@
         </div>
 
         <!-- ==================== PROJECTS PAGE ==================== -->
-        <div id="page-projects" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div id="page-projects" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
                 <span class="text-cyan-400 font-semibold text-xs tracking-widest uppercase">Portfolio Showcase</span>
                 <h2 class="text-3xl sm:text-4xl font-black">Featured Projects & Works</h2>
-                <p class="text-gray-400">Filter through our multi-disciplinary projects spanning digital marketing, web applications, and utility software.</p>
+                <p class="text-gray-400">Filter through multi-disciplinary projects spanning digital marketing, web applications, and utility software.</p>
             </div>
 
             <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
                 <button onclick="filterProjects('all'); playAudioTone(450);" class="project-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-cyan-500 text-black shadow-lg shadow-cyan-500/25" data-filter="all">All Works</button>
                 <button onclick="filterProjects('web'); playAudioTone(500);" class="project-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white" data-filter="web">Web Development</button>
                 <button onclick="filterProjects('marketing'); playAudioTone(550);" class="project-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all glass-card text-gray-300 hover:text-white" data-filter="marketing">Digital Marketing</button>
@@ -256,7 +248,6 @@
 
             <!-- Projects Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-                <!-- Project 1 -->
                 <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between project-card" data-category="web">
                     <div class="p-6 space-y-4">
                         <div class="flex justify-between items-center">
@@ -272,7 +263,6 @@
                     </div>
                 </div>
 
-                <!-- Project 2 -->
                 <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between project-card" data-category="marketing">
                     <div class="p-6 space-y-4">
                         <div class="flex justify-between items-center">
@@ -288,7 +278,6 @@
                     </div>
                 </div>
 
-                <!-- Project 3 -->
                 <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between project-card" data-category="emulator">
                     <div class="p-6 space-y-4">
                         <div class="flex justify-between items-center">
@@ -307,8 +296,8 @@
         </div>
 
         <!-- ==================== SKILLS PAGE ==================== -->
-        <div id="page-skills" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div id="page-skills" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
                 <span class="text-cyan-400 font-semibold text-xs tracking-widest uppercase">Expertise & Tech Stack</span>
                 <h2 class="text-3xl sm:text-4xl font-black">Core Skills & Capabilities</h2>
                 <p class="text-gray-400">Professional proficiency across digital marketing, software development, and video production.</p>
@@ -343,8 +332,8 @@
         </div>
 
         <!-- ==================== STUDIO PAGE ==================== -->
-        <div id="page-studio" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div id="page-studio" class="page-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
                 <span class="text-cyan-400 font-semibold text-xs tracking-widest uppercase">Interactive Studio</span>
                 <h2 class="text-3xl sm:text-4xl font-black">Keymapper & Code Sandbox</h2>
                 <p class="text-gray-400">Test interactive emulator keymapping simulation and live code preview right in your browser.</p>
@@ -360,10 +349,10 @@
                     <div class="bg-dark-900/80 rounded-2xl p-6 border border-gray-800 text-center space-y-4">
                         <div id="key-output" class="text-3xl font-black text-cyan-400 font-mono py-4">PRESS ANY KEY OR BUTTON</div>
                         <div class="grid grid-cols-4 gap-3 max-w-xs mx-auto">
-                            <button onclick="simulateKey('W'); playAudioTone(520);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black transition-all">W</button>
-                            <button onclick="simulateKey('A'); playAudioTone(580);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black transition-all">A</button>
-                            <button onclick="simulateKey('S'); playAudioTone(640);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black transition-all">S</button>
-                            <button onclick="simulateKey('D'); playAudioTone(700);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black transition-all">D</button>
+                            <button onclick="simulateKey('W'); playAudioTone(520);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">W</button>
+                            <button onclick="simulateKey('A'); playAudioTone(580);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">A</button>
+                            <button onclick="simulateKey('S'); playAudioTone(640);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">S</button>
+                            <button onclick="simulateKey('D'); playAudioTone(700);" class="p-4 rounded-xl glass-card font-bold hover:bg-cyan-500 hover:text-black active:scale-95 transition-all">D</button>
                         </div>
                     </div>
                 </div>
@@ -372,14 +361,14 @@
                 <div class="glass-card p-6 rounded-3xl space-y-6">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-code text-purple-400"></i> Live HTML Sandbox</h3>
-                        <button onclick="runCode(); playAudioTone(800);" class="px-4 py-1.5 rounded-full bg-purple-500 text-white text-xs font-bold hover:bg-purple-600 transition-all">Run Code</button>
+                        <button onclick="runCode(); playAudioTone(800);" class="px-4 py-1.5 rounded-full bg-purple-500 text-white text-xs font-bold hover:bg-purple-600 active:scale-95 transition-all">Run Code</button>
                     </div>
                     <div class="space-y-4">
-                        <textarea id="code-input" rows="4" class="w-full bg-dark-900 border border-gray-800 rounded-xl p-3 font-mono text-xs text-cyan-300 focus:outline-none focus:border-cyan-500">&lt;h2 style="color: #06b6d4;"&gt;Hello from Gemini!&lt;/h2&gt;
-&lt;p style="color: #aaa;"&gt;Your web app is updated and live.&lt;/p&gt;</textarea>
+                        <textarea id="code-input" rows="4" class="w-full bg-dark-900 border border-gray-800 rounded-xl p-3 font-mono text-xs text-cyan-300 focus:outline-none focus:border-cyan-500">&lt;h2 style="color: #06b6d4;"&gt;Hello from Portfolio!&lt;/h2&gt;
+&lt;p style="color: #aaa;"&gt;Touch and transition effects are active.&lt;/p&gt;</textarea>
                         <div id="code-preview" class="bg-dark-900/90 rounded-xl p-4 border border-gray-800 min-h-[80px]">
-                            <h2 style="color: #06b6d4;">Hello from Gemini!</h2>
-                            <p style="color: #aaa;">Your web app is updated and live.</p>
+                            <h2 style="color: #06b6d4;">Hello from Portfolio!</h2>
+                            <p style="color: #aaa;">Touch and transition effects are active.</p>
                         </div>
                     </div>
                 </div>
@@ -387,8 +376,8 @@
         </div>
 
         <!-- ==================== CONTACT PAGE ==================== -->
-        <div id="page-contact" class="page-view max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div id="page-contact" class="page-view max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
                 <span class="text-cyan-400 font-semibold text-xs tracking-widest uppercase">Get In Touch</span>
                 <h2 class="text-3xl sm:text-4xl font-black">Let's Build Something Great</h2>
             </div>
@@ -399,13 +388,13 @@
                         <input type="email" required class="w-full bg-dark-900 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500" placeholder="Your Email">
                     </div>
                     <textarea rows="5" required class="w-full bg-dark-900 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500" placeholder="Your Message..."></textarea>
-                    <button type="submit" onclick="playAudioTone(850);" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/30">Send Message</button>
+                    <button type="submit" onclick="playAudioTone(850);" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-lg shadow-cyan-500/30 active:scale-95 transition-all">Send Message</button>
                 </form>
             </div>
         </div>
     </main>
 
-    <!-- Modal & Toast -->
+    <!-- Modal Dialog -->
     <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
         <div class="glass-card max-w-lg w-full p-8 rounded-3xl space-y-6 relative border border-cyan-500/30">
             <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
@@ -417,7 +406,7 @@
         </div>
     </div>
 
-    <!-- WebAudio API Sound Synthesizer -->
+    <!-- WebAudio & Dynamic Touch Ripple JS -->
     <script>
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playAudioTone(freq) {
@@ -426,13 +415,40 @@
             const gain = audioCtx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.15);
+            osc.stop(audioCtx.currentTime + 0.12);
         }
+
+        // Touch & Click Ripple Creator (Replaces laggy custom cursor circles)
+        function createRipple(x, y) {
+            const ripple = document.createElement('div');
+            ripple.className = 'touch-ripple';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 500);
+        }
+
+        window.addEventListener('click', (e) => createRipple(e.clientX, e.clientY));
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches && e.touches[0]) {
+                createRipple(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+
+        // Smooth Ambient Glow Tracking (Hardware Accelerated)
+        const glow = document.getElementById('mouse-glow');
+        function updateGlow(x, y) {
+            glow.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+        }
+        window.addEventListener('mousemove', (e) => updateGlow(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) updateGlow(e.touches[0].clientX, e.touches[0].clientY);
+        });
 
         // Navigation
         function switchPage(pageId) {
@@ -487,47 +503,18 @@
             document.getElementById('key-output').innerText = `KEY PRESSED: [ ${k} ]`;
         }
 
-        // Desktop + Touch Screen Cursor Light Tracking
-        const cursor = document.getElementById('custom-cursor');
-        const follower = document.getElementById('cursor-follower');
-        const glow = document.getElementById('mouse-glow');
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-        let cursorX = mouseX, cursorY = mouseY, followerX = mouseX, followerY = mouseY;
-
-        function updateCoords(e) {
-            mouseX = e.touches ? e.touches[0].clientX : e.clientX;
-            mouseY = e.touches ? e.touches[0].clientY : e.clientY;
-            glow.style.left = mouseX + 'px';
-            glow.style.top = mouseY + 'px';
-        }
-        window.addEventListener('mousemove', updateCoords);
-        window.addEventListener('touchmove', updateCoords);
-
-        function renderCursor() {
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            follower.style.left = followerX + 'px';
-            follower.style.top = followerY + 'px';
-            requestAnimationFrame(renderCursor);
-        }
-        renderCursor();
-
-        // Canvas Particles
+        // Background Particle Network Canvas
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         resize();
 
-        const particles = Array.from({ length: 45 }, () => ({
+        const particles = Array.from({ length: 35 }, () => ({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.8,
-            vy: (Math.random() - 0.5) * 0.8,
+            vx: (Math.random() - 0.5) * 0.7,
+            vy: (Math.random() - 0.5) * 0.7,
             radius: Math.random() * 2 + 1
         }));
 
@@ -545,7 +532,7 @@
                 for (let j = idx + 1; j < particles.length; j++) {
                     const p2 = particles[j];
                     const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 130) {
+                    if (dist < 120) {
                         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
                     }
                 }
